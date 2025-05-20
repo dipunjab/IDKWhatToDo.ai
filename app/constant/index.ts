@@ -5,27 +5,29 @@ import { formatDate } from "lib/utlis";
 export const sidebarItems = [
     {
         id: 1,
-        icon: "/assets/icons/home.svg",
+        icon: "/icons/home.svg",
         label: "Dashboard",
         href: "/dashboard",
     },
     {
-        id: 2,
-        icon: "/assets/icons/users.svg",
-        label: "All Users",
-        href: "/admin/all-users",
-    },
-    {
         id: 3,
-        icon: "/assets/icons/ai.svg",
+        icon: "/icons/icons8-ai-16.png",
         label: "Career AI",
         href: "/careerai",
     },
     {
+        id: 2,
+        icon: "/icons/users.svg",
+        label: "All Users",
+        href: "/admin/all-users",
+        role: "admin",
+    },
+    {
         id: 4,
-        icon: "/assets/icons/feedback.svg",
+        icon: "/icons/feedback.svg",
         label: "Feedbacks",
         href: "/admin/feedback",
+        role: "admin",
     },
 ];
 
