@@ -70,6 +70,14 @@
     @apply text-red-500 text-base font-medium text-center;
   }
 
+  .stats-card {
+    @apply p-6 flex flex-col gap-6 bg-white shadow-400 rounded-20 text-dark-100;
+
+    .content {
+      @apply flex flex-row md:flex-col-reverse xl:flex-row xl:items-center gap-3 justify-between;
+    }
+  }
+
   .base-layout {
     @apply flex flex-col lg:flex-row h-screen w-full;
 
@@ -104,8 +112,10 @@
 
   .nav-items {
     @apply flex flex-col px-6 h-full;
+
     .container {
       @apply flex flex-col justify-between h-full;
+
       nav {
         @apply flex flex-col gap-3.5 pt-9;
       }
@@ -113,7 +123,7 @@
   }
 
   .nav-footer {
-    @apply flex items-center gap-2.5 pb-8 ;
+    @apply flex items-center gap-2.5 pb-8;
 
     img {
       @apply size-10 rounded-full aspect-square;
@@ -144,6 +154,27 @@
     }
   }
 
+  .header {
+    @apply flex flex-col gap-5 md:flex-row justify-between w-full;
+
+    article {
+      @apply flex flex-col gap-3.5 w-full;
+    }
+  }
+
+  .dashboard {
+    @apply flex flex-col gap-10 w-full pb-20;
+
+    .container {
+      @apply flex flex-col gap-5 mt-2.5;
+
+      h1 {
+        @apply text-xl font-semibold text-dark-100;
+      }
+    }
+  }
+
+
 }
 
 @layer utilities {
@@ -159,6 +190,9 @@
     @apply flex items-center text-xs md:text-lg font-normal cursor-pointer gap-2.5 py-[18px] px-3.5 rounded-lg text-dark-200 hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 hover:text-white;
   }
 
+  .button-class {
+    @apply !bg-primary-100 !px-4 !rounded-lg !flex !items-center !justify-center !gap-1.5 !shadow-none;
+  }
 }
 
 html,

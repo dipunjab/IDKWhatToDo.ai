@@ -1,2 +1,4 @@
 export { default as NavItems} from "./NavItems"
 export { default as MobileSideBar} from "./MobileSideBar"
+export { default as Headers} from "./Headers"
+export { default as StatsCard} from "./StatsCard"

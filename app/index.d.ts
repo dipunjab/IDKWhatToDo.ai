@@ -43,7 +43,7 @@ declare interface CareerPlan {
 
   /** A human-readable overview of the plan */
   summary: string;
-
+  country: string;
   /** User’s input profile (for context & display) */
   profileOverview: string[];  
   suggestedCareers: string[];  
@@ -53,7 +53,15 @@ declare interface CareerPlan {
   salaryRange: string;
   resourceLinks: ResourceLink[];  
   createdAt: string;        
-  downloadLink?: string;
+}
+
+declare interface CareerCardProps {
+  id: string;
+  name: string;
+  location: string;
+  imageUrl: string;
+  tags: string[];
+  salary: string;
 }
 
 type GetAllCareersResponse = {
@@ -87,4 +95,16 @@ declare interface DashboardStats {
     currentMonth: number;
     lastMonth: number;
   };
+}
+
+declare interface StatsCard {
+  headerTitle: string;
+  total: number;
+  lastMonthCount: number;
+  currentMonthCount: number;
+}
+
+declare interface TrendResult {
+  trend: "increment" | "decrement" | "no change";
+  percentage: number;
 }

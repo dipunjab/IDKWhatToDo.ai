@@ -33,7 +33,7 @@ const NavItems = () => {
               {({ isActive }: { isActive: boolean }) => (
                 <div
                   className={cn('group nav-item', {
-                    'bg-primary-100 !text-white': isActive
+                    'bg-gradient-to-r from-purple-600 to-pink-600 !text-white': isActive
                   })}
                   onClick={handleClick}
                 >
