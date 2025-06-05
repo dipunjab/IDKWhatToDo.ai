@@ -174,6 +174,27 @@
     }
   }
 
+  .trip-card {
+    @apply shadow-300 bg-white rounded-[20px] flex-col w-full relative;
+
+    img {
+      @apply w-full h-[160px] rounded-t-xl object-cover aspect-video;
+    }
+
+    article {
+      @apply flex flex-col gap-3 mt-4 pl-[18px] pr-3.5;
+      h2 {
+        @apply text-sm md:text-lg font-semibold text-dark-100 line-clamp-2;
+      }
+      figure {
+        @apply flex items-center gap-2;
+        figCaption {
+          @apply text-xs md:text-sm font-normal text-gray-100;
+        }
+      }
+    }
+    
+  }
 
 }
 
@@ -192,6 +213,14 @@
 
   .button-class {
     @apply !bg-primary-100 !px-4 !rounded-lg !flex !items-center !justify-center !gap-1.5 !shadow-none;
+  }
+
+  .tripCard-pill {
+    @apply bg-white py-1 px-2.5 w-fit rounded-[20px] absolute top-2.5 right-4 text-dark-100 text-sm font-semibold;
+  }
+
+  .trip-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-7;
   }
 }
 

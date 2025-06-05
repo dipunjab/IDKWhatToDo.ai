@@ -35,7 +35,6 @@ const CareerCard = ({ id, name, location, imageUrl, tags, salary }: CareerCardPr
                     </ChipsDirective>
                 </ChipListComponent>
             </div>
-
             <article className="tripCard-pill">{salary}</article>
         </Link>
     )
