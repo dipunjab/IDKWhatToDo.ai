@@ -46,7 +46,7 @@ export const storeUserData = async () => {
                 accountId: user.$id,
                 email: user.email,
                 name: user.name,
-                imageUrl: profilePicture,
+                imageURL: profilePicture,
                 joinedAt: new Date().toISOString(),
             }
         );
@@ -92,7 +92,7 @@ export const getUser = async () => {
             appwriteConfig.userCollectionId,
             [
                 Query.equal("accountId", user.$id),
-                Query.select(["name", "email", "imageUrl", "joinedAt", "accountId"]),
+                Query.select(["name", "email", "imageURL", "joinedAt", "accountId"]),
             ]
         );
 

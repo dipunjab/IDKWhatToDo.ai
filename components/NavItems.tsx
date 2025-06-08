@@ -1,22 +1,22 @@
 import { cn } from 'lib/utlis'
-import { Link, NavLink } from 'react-router'
+import { Link, NavLink, useLoaderData, useNavigate } from 'react-router'
+import { logoutUser } from '~/appwrite/auth';
 import { sidebarItems } from '~/constant'
 
-const NavItems = () => {
+const NavItems = ({ handleClick }: { handleClick?: () => void }) => {
 
-  const user = {
-    name: "Usman Ghani",
-    status: "admin"
+  const user = useLoaderData();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logoutUser();
+    navigate('/login')
   }
-
-
-  const handleClick = () => { };
-
-  const handleLogout = () => { };
 
   const filteredSidebarItems = sidebarItems.filter(
     item => !item.role || user?.status === item.role
   );
+
   return (
     <section className="nav-items">
       <Link to='/' className="link-logo">
@@ -47,15 +47,15 @@ const NavItems = () => {
               )}
             </NavLink>
           ))}
-          
+
         </nav>
 
         <footer className="nav-footer">
-          <img src={'/images/usman.png'} alt={'Usman'} referrerPolicy="no-referrer" />
+          <img src={user?.imageURL} alt={user?.name} referrerPolicy="no-referrer" />
 
           <article>
-            <h2>usman ghani</h2>
-            <p>ghaniusman0287@gmail.com</p>
+            <h2>{user?.name}</h2>
+            <p>{user?.email}</p>
           </article>
 
           <button

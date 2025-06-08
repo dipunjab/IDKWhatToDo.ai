@@ -6,7 +6,7 @@ const CareerCard = ({ id, name, location, imageUrl, tags, salary }: CareerCardPr
     const path = useLocation();
 
     return (
-        <Link to={path.pathname === '/' || path.pathname.startsWith('/career') ? `/travel/${id}` : `/trips/${id}`} className="trip-card">
+        <Link to={path.pathname === '/' || path.pathname.startsWith('/career') ? `/travel/${id}` : `/trips/${id}`} className="career-card">
             <img src={imageUrl} alt={name} />
 
             <article>
@@ -21,7 +21,7 @@ const CareerCard = ({ id, name, location, imageUrl, tags, salary }: CareerCardPr
             </article>
 
             <div className="mt-5 pl-[18px] pr-3.5 pb-5">
-                <ChipListComponent id="travel-chip">
+                <ChipListComponent id="career-chip">
                     <ChipsDirective>
                         {tags?.map((tag, index) => (
                             <ChipDirective
@@ -35,7 +35,7 @@ const CareerCard = ({ id, name, location, imageUrl, tags, salary }: CareerCardPr
                     </ChipsDirective>
                 </ChipListComponent>
             </div>
-            <article className="tripCard-pill">{salary}</article>
+            <article className="careerCard-pill">{salary}</article>
         </Link>
     )
 }

@@ -1,11 +1,14 @@
 import { Headers, StatsCard } from "components"
 import CareerCard from "components/CareerCard"
+import {  getUser } from "~/appwrite/auth"
+import type { Route } from "./+types/dashboard";
 
-const Dashboard = () => {
-  const user = {
-    name: "Usman Ghani"
-  }
+export const clientLoader = async () => await getUser();
 
+const Dashboard = ({ loaderData }:  Route.ComponentProps ) => {
+  const user = loaderData as User | null;
+  // console.log(user);
+  
   return (
     <div className="dashboard wrapper">
       <Headers
@@ -36,9 +39,9 @@ const Dashboard = () => {
       </section>
 
       <section className="container">
-        <h1 className="text-xl font-semibold text-dark-100">Created Trips</h1>
+        <h1 className="text-xl font-semibold text-dark-100">Created Careers</h1>
 
-        <div className='trip-grid'>
+        <div className='career-grid'>
             <CareerCard
               key={2}
               id={"2"}
