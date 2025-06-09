@@ -7,7 +7,6 @@ export const clientLoader = async () => await getUser();
 
 const Dashboard = ({ loaderData }:  Route.ComponentProps ) => {
   const user = loaderData as User | null;
-  // console.log(user);
   
   return (
     <div className="dashboard wrapper">
