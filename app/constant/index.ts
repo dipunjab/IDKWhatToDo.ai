@@ -103,6 +103,14 @@ export const experienceLevels = [
   "10+ years",
 ];
 
+export const selectItems = [
+  "education",
+  "interests",
+  "personality",
+  "skills",
+  "experienceLevel",
+] as (keyof CareerFormData)[];
+
 export const comboBoxItems = {
     education: educationLevels,
     interests: interests,
@@ -252,3 +260,4 @@ export const allUsers = [
         role: "user",
     },
 ];
+

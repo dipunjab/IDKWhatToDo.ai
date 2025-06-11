@@ -210,13 +210,25 @@
   .status-column {
     @apply flex justify-center items-center gap-1 w-[65px] py-[2px] rounded-2xl mix-blend-multiply;
   }
+
+    .career-form {
+    @apply flex flex-col gap-6 py-6 bg-white border border-light-200 rounded-xl shadow-100;
+    div {
+      @apply w-full flex flex-col gap-2.5 px-6 relative;
+    }
+    label {
+      @apply text-sm font-normal text-gray-100;
+    }
+  }
 }
 
 @layer utilities {
   .wrapper {
     @apply w-full max-w-7xl mx-auto px-4 lg:px-8;
   }
-
+  .wrapper-md {
+    @apply w-full max-w-3xl px-4 lg:px-8 mx-auto;
+  }
   .flex-center {
     @apply flex justify-center items-center;
   }
@@ -295,12 +307,31 @@
   }
 
   .button-class {
-    @apply !bg-primary-100 !px-4 !rounded-lg !flex !items-center !justify-center !gap-1.5 !shadow-none;
-  }
+  @apply !px-4 rounded-lg !flex !items-center !justify-center !gap-1.5 !shadow-none;
+  @apply !bg-gradient-to-r !from-pink-500 !via-purple-500 !to-blue-500 !text-white !transition-all !duration-300;
+}
+
+.button-class:hover {
+  @apply brightness-110 shadow-md scale-105;
+}
 
   .button-class-secondary {
     @apply !bg-white !px-4 !rounded-lg !flex !items-center !justify-center !gap-1.5 !shadow-sm;
   }
+
+    .combo-box {
+    @apply !p-3.5 !border w-full !border-light-400 !rounded-xl !text-base !text-dark-300 !font-normal;
+  }
+    .form-label {
+    @apply text-sm font-normal text-gray-100;
+  }
+  .form-input {
+    @apply p-3.5 border border-light-400 rounded-xl text-base text-dark-300 font-normal;
+  }
+  .comboBox-popup {
+    @apply absolute z-10 top-24 bg-white border border-gray-200 rounded-xl shadow-200 h-[250px] w-full md:max-w-[660px] overflow-hidden;
+  }
+
 }
 
 html,

@@ -65,18 +65,19 @@ declare interface CareerCardProps {
 }
 
 type GetAllCareersResponse = {
-  allTrips: Models.Document[];
+  allCareers: Models.Document[];
   total: number;
 };
 
 declare interface CareerFormData {
-  age: string;
+  age: number;
   country: string;
   education: string;
   interests: string[];
   personality: string;
   skills: string[];
-  experienceLevel: string
+  experienceLevel: string;
+  descriptionByUser: string
 }
 
 declare interface DashboardStats {
@@ -107,4 +108,37 @@ declare interface StatsCard {
 declare interface TrendResult {
   trend: "increment" | "decrement" | "no change";
   percentage: number;
+}
+
+declare interface Country {
+  name: string;
+  flag: string;
+  value: string;
+}
+
+declare interface Career {
+  id: string;
+  title: string;
+  description: string;
+  salaryInsights: {
+    averageLocal: string;
+    remoteOrFreelance: string;
+  };
+  reasoning: string;
+  requiredSkills: string[];
+  learningPath: {
+    phase: string;
+    topics: string[];
+  }[];
+  onlineResources: {
+    name: string;
+    type: string;
+    url: string;
+  }[];
+  localOpportunities: string;
+  relatedAlternatives: string[];
+}
+
+declare interface CreateCareerResponse {
+  id?: string;
 }
