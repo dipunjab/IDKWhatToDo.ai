@@ -31,5 +31,5 @@ export const getCareerById = async (careerId: string) => {
         return null;
     }
 
-    return careerId;
+    return career;
 }
