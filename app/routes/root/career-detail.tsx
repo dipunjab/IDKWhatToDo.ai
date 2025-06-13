@@ -8,6 +8,7 @@ import Header from 'components/Headers';
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const { careerId } = params;
   if (!careerId) throw new Error('Career ID is required');
+  console.log("📌 careerId param:", careerId);
 
   const [career, careers] = await Promise.all([
     getCareerById(careerId),
@@ -29,7 +30,7 @@ const CareerDetail = ({ loaderData }: Route.ComponentProps) => {
   const careerData: any = parseCareerData(loaderData?.career?.careerDetail);
 
 
-  const {title,description ,recommendedCareer, learningPath, localOpportunities, onlineResources, reasoning, relatedAlternatives, requiredSkills, salaryInsights } = careerData || {};
+  const { title, description, recommendedCareer, learningPath, localOpportunities, onlineResources, reasoning, relatedAlternatives, requiredSkills, salaryInsights } = careerData || {};
 
 
 
@@ -38,7 +39,7 @@ const CareerDetail = ({ loaderData }: Route.ComponentProps) => {
       <Header title="Career Detail" description="View AI-generated Career plan" />
 
       <section className="container wrapper-md space-y-10 py-6">
-        
+
         <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
 
           <h3 className="text-sm text-primary-600 font-semibold uppercase tracking-wide mb-2">🎯 Your Ideal Career</h3>

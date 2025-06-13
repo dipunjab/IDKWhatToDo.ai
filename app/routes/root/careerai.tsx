@@ -17,7 +17,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
   return {
     careers: (allCareers ?? []).map(({ $id, careerDetail, imageUrls }) => ({
-      id: $id,
+      docId: $id,
       ...parseCareerData(careerDetail),
       imageUrls: imageUrls ?? []
     })),
@@ -27,6 +27,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 const CareerAi = ({ loaderData }: Route.ComponentProps) => {
   const careers = loaderData?.careers as Career[]  | [];
+console.log(careers);
 
   const [searchParams] = useSearchParams();
   const initialPage = Number(searchParams.get('page') || '1')
@@ -57,7 +58,7 @@ const CareerAi = ({ loaderData }: Route.ComponentProps) => {
             <>
             <CareerCard
               key={career.id}
-              id={career.id}
+              id={career.docId}
               name={career.title}
               description={career.description}
               imageUrl={career?.imageUrls[0]}

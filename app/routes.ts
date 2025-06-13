@@ -9,7 +9,7 @@ export default [
         route('/admin/feedback', 'routes/admin/feedback.tsx'),
         route('/admin/all-users', 'routes/admin/all-users.tsx'),
         route('/career/create', 'routes/admin/create-career.tsx'),
-        route('careers/:careerId', 'routes/root/career-detail.tsx'),
+        route('/careers/:careerId', 'routes/root/career-detail.tsx'),
     ]),
     index("routes/root/home.tsx")
 ] satisfies RouteConfig;

@@ -4,11 +4,12 @@ import {cn, getFirstWord} from "../lib/utlis";
 
 const CareerCard = ({ id, name, description,imageUrl, tags }: CareerCardProps) => {
     const path = useLocation();
+    console.log(id);
 
     return (
-        <Link to={path.pathname === '/' || path.pathname.startsWith('/career') ? `/travel/${id}` : `/trips/${id}`} className="career-card">
+        <Link to={`/careers/${id}`} className="career-card">
             <img src={imageUrl} alt={name} />
-
+            
             <article>
                 <h2>{name}</h2>
                 <figure>

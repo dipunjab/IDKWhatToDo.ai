@@ -116,6 +116,7 @@ declare interface Country {
 }
 
 declare interface Career {
+  docId: string;
   id: string;
   title: string;
   description: string;

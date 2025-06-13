@@ -41,7 +41,7 @@ const Dashboard = ({ loaderData }:  Route.ComponentProps ) => {
         <h1 className="text-xl font-semibold text-dark-100">Created Careers</h1>
 
         <div className='career-grid'>
-            <CareerCard
+            {/* <CareerCard
               key={2}
               id={"2"}
               name={"Software Developer"}
@@ -49,7 +49,7 @@ const Dashboard = ({ loaderData }:  Route.ComponentProps ) => {
               location={'Pakistan'}
               tags={["Computer Science", "Programming"]}
               salary={"$200k"}
-            />
+            /> */}
         </div>
       </section>
 
