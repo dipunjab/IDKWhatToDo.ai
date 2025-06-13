@@ -5,23 +5,23 @@ import { appwriteConfig, database } from "~/appwrite/client";
 import { ID } from "appwrite";
 
 export const action = async ({ request }: ActionFunctionArgs) => {
-    const {
-        age,
-        country,
-        education,
-        interests,
-        personality,
-        skills,
-        experienceLevel,
-        descriptionByUser,
-        userId,
-    } = await request.json();
+  const {
+    age,
+    country,
+    education,
+    interests,
+    personality,
+    skills,
+    experienceLevel,
+    descriptionByUser,
+    userId,
+  } = await request.json();
 
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-    const unsplashApiKey = process.env.UNSPLASH_ACCESS_KEY!;
+  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+  const unsplashApiKey = process.env.UNSPLASH_ACCESS_KEY!;
 
-    try {
-        const prompt = `
+  try {
+    const prompt = `
 You are an intelligent career advisor AI. Based on the user's background and preferences, your task is to recommend **one** best-fit career path and provide detailed, practical guidance to help the user pursue it.
 
 Please ensure:
@@ -91,34 +91,49 @@ Your goal is to give the user **clarity**, not just information. Focus on what s
 `;
 
 
-        const textResult = await genAI
-            .getGenerativeModel({ model: 'gemini-2.0-flash' })
-            .generateContent([prompt])
+    const textResult = await genAI
+      .getGenerativeModel({ model: 'gemini-2.0-flash' })
+      .generateContent([prompt])
 
-        const career = parseMarkdownToJson(textResult.response.text());
+    const career = parseMarkdownToJson(textResult.response.text()) as any;
 
-        const imageResponse = await fetch(
-            `https://api.unsplash.com/search/photos?query= ${interests[0]} ${skills[2]}&client_id=${unsplashApiKey}`
-        );
-
-        const imageUrls = (await imageResponse.json()).results.slice(0, 3)
-            .map((result: any) => result.urls?.regular || null);
-
-        const result = await database.createDocument(
-            appwriteConfig.databaseId,
-            appwriteConfig.careerCollectionId,
-            ID.unique(),
-            {
-                careerDetail: JSON.stringify(career),
-                createdAt: new Date().toISOString(),
-                imageUrls,
-                userId,
-            }
-        )
+    const flatCareer: Career = {
+      id: ID.unique(), // manually include ID if needed
+      title: career.recommendedCareer.title,
+      description: career.recommendedCareer.description,
+      reasoning: career.reasoning,
+      requiredSkills: career.requiredSkills,
+      learningPath: career.learningPath,
+      onlineResources: career.onlineResources,
+      localOpportunities: career.localOpportunities,
+      salaryInsights: career.salaryInsights,
+      relatedAlternatives: career.relatedAlternatives,
+      imageUrls: []
+    };
 
 
-        return data({ id: result.$id })
-    } catch (e) {
-        console.error('Error generating career plan: ', e);
-    }
+    const imageResponse = await fetch(
+      `https://api.unsplash.com/search/photos?query= ${interests[0]} ${interests[1]} ${skills[1]}&client_id=${unsplashApiKey}`
+    );
+
+    const imageUrls = (await imageResponse.json()).results.slice(0, 3)
+      .map((result: any) => result.urls?.regular || null);
+
+    const result = await database.createDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.careerCollectionId,
+      ID.unique(),
+      {
+        careerDetail: JSON.stringify(flatCareer),
+        createdAt: new Date().toISOString(),
+        imageUrls,
+        userId,
+      }
+    )
+
+
+    return data({ id: result.$id })
+  } catch (e) {
+    console.error('Error generating career plan: ', e);
+  }
 }

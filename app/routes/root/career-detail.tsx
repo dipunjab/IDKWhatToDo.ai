@@ -29,7 +29,7 @@ const CareerDetail = ({ loaderData }: Route.ComponentProps) => {
   const careerData: any = parseCareerData(loaderData?.career?.careerDetail);
 
 
-  const { recommendedCareer, learningPath, localOpportunities, onlineResources, reasoning, relatedAlternatives, requiredSkills, salaryInsights } = careerData || {};
+  const {title,description ,recommendedCareer, learningPath, localOpportunities, onlineResources, reasoning, relatedAlternatives, requiredSkills, salaryInsights } = careerData || {};
 
 
 
@@ -43,9 +43,9 @@ const CareerDetail = ({ loaderData }: Route.ComponentProps) => {
 
           <h3 className="text-sm text-primary-600 font-semibold uppercase tracking-wide mb-2">🎯 Your Ideal Career</h3>
 
-          <h2 className="text-3xl font-bold text-gray-800 mb-1">{recommendedCareer?.title}</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-1">{title}</h2>
 
-          <p className="text-gray-600 text-base mb-4">{recommendedCareer?.description}</p>
+          <p className="text-gray-600 text-base mb-4">{description}</p>
 
           <div className="bg-primary-50 border border-primary-100 rounded-xl p-4">
             <h4 className="text-md font-semibold text-primary-700 mb-1">🤖 Why This Career Was Recommended for You</h4>
@@ -119,7 +119,7 @@ const CareerDetail = ({ loaderData }: Route.ComponentProps) => {
           <h3 className="text-sm text-yellow-600 font-semibold uppercase tracking-wide mb-4">💰 Salary Insights</h3>
 
           <div className="text-gray-700 space-y-2">
-            <p><strong>Local (Saudi Arabia):</strong> {salaryInsights?.averageLocal}</p>
+            <p><strong>Local:</strong> {salaryInsights?.averageLocal}</p>
             <p><strong>Remote / Freelance:</strong> {salaryInsights?.remoteOrFreelance}</p>
           </div>
         </div>

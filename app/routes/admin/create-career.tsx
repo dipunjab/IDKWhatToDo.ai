@@ -20,7 +20,7 @@ export const loader = async () => {
     })) as Country[];
 }
 
-const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
+const CreateCareer = ({ loaderData }: Route.ComponentProps) => {
     const countries = loaderData as Country[];
     const navigate = useNavigate();
 
@@ -92,9 +92,9 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
             const result: CreateCareerResponse = await response.json();
 
             console.log(result);
-            
-           if(result?.id) navigate(`/career/${result.id}`)
-           else console.error('Failed to generate a trip')
+
+            if (result?.id) navigate(`/careers/${result.id}`)
+            else console.error('Failed to generate a trip')
 
         } catch (error) {
             console.log("Error While generating career: ", error);
@@ -178,33 +178,37 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
                                 <label htmlFor={key}>{formatKey(key)}</label>
 
                                 {isMultiSelect ? (
-                                    <MultiSelectComponent
-                                        id={key}
-                                        dataSource={comboBoxItems[key].map((item) => ({
-                                            text: item,
-                                            value: item,
-                                        }))}
-                                        fields={{ text: 'text', value: 'value' }}
-                                        value={formData[key]}
-                                        placeholder={`Select ${formatKey(key)}`}
-                                        mode="Box"
-                                        change={(e) => {
-    handleChange(key, e.value || []);
-}}
-                                        allowFiltering
-                                        filtering={(e) => {
-                                            const query = e.text.toLowerCase();
-                                            e.updateData(
-                                                comboBoxItems[key]
-                                                    .filter((item) => item.toLowerCase().includes(query))
-                                                    .map((item) => ({
-                                                        text: item,
-                                                        value: item,
-                                                    }))
-                                            );
-                                        }}
-                                        className="combo-box"
-                                    />
+                                    <>
+                                        <MultiSelectComponent
+                                            id={key}
+                                            dataSource={comboBoxItems[key].map((item) => ({
+                                                text: item,
+                                                value: item,
+                                            }))}
+                                            fields={{ text: 'text', value: 'value' }}
+                                            value={formData[key]}
+                                            placeholder={`Select ${formatKey(key)}`}
+                                            mode="Box"
+                                            change={(e) => {
+                                                handleChange(key, e.value || []);
+                                            }}
+                                            allowCustomValue={true}
+                                            allowFiltering
+                                            filtering={(e) => {
+                                                const query = e.text.toLowerCase();
+                                                e.updateData(
+                                                    comboBoxItems[key]
+                                                        .filter((item) => item.toLowerCase().includes(query))
+                                                        .map((item) => ({
+                                                            text: item,
+                                                            value: item,
+                                                        }))
+                                                );
+                                            }}
+                                            className="combo-box"
+                                        />
+                                        <p className="text-xs text-blue-800 mb-1">You can also type and add your own {key}.</p>
+                                    </>
                                 ) : (
                                     <ComboBoxComponent
                                         id={key}
@@ -274,4 +278,4 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
         </main>
     )
 }
-export default CreateTrip
+export default CreateCareer

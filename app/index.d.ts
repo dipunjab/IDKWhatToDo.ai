@@ -58,10 +58,9 @@ declare interface CareerPlan {
 declare interface CareerCardProps {
   id: string;
   name: string;
-  location: string;
+  description: string;
   imageUrl: string;
   tags: string[];
-  salary: string;
 }
 
 type GetAllCareersResponse = {
@@ -137,6 +136,7 @@ declare interface Career {
   }[];
   localOpportunities: string;
   relatedAlternatives: string[];
+  imageUrls: string[];
 }
 
 declare interface CreateCareerResponse {

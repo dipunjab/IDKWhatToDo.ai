@@ -1,20 +1,42 @@
 import { PagerComponent } from "@syncfusion/ej2-react-grids"
 import CareerCard from "components/CareerCard"
 import Header from "components/Headers"
+import { parseCareerData } from "lib/utlis";
 import { useState } from "react";
-import { useSearchParams } from "react-router";
+import { useSearchParams, type LoaderFunctionArgs } from "react-router";
+import { getAllCareers } from "~/appwrite/careers";
+import type { Route } from "./+types/careerai";
 
-const CareerAi = () => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const limit = 4;
+  const url = new URL(request.url);
+  const page = parseInt(url.searchParams.get('page') || "1", 10);
+  const offset = (page - 1) * limit;
+
+  const { allCareers, total } = await getAllCareers(limit, offset);
+
+  return {
+    careers: (allCareers ?? []).map(({ $id, careerDetail, imageUrls }) => ({
+      id: $id,
+      ...parseCareerData(careerDetail),
+      imageUrls: imageUrls ?? []
+    })),
+    total
+  }
+}
+
+const CareerAi = ({ loaderData }: Route.ComponentProps) => {
+  const careers = loaderData?.careers as Career[]  | [];
 
   const [searchParams] = useSearchParams();
-    const initialPage = Number(searchParams.get('page') || '1')
+  const initialPage = Number(searchParams.get('page') || '1')
 
-    const [currentPage, setCurrentPage] = useState(initialPage);
+  const [currentPage, setCurrentPage] = useState(initialPage);
 
-    const handlePageChange = (page: number) => {
-        setCurrentPage(page);
-        window.location.search = `?page=${page}`
-    }
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.location.search = `?page=${page}`
+  }
 
   return (
     <main className="all-users wrapper">
@@ -31,22 +53,24 @@ const CareerAi = () => {
         </h1>
 
         <div className="career-grid mb-4">
-          <CareerCard
-            key={2}
-            id={"2"}
-            name={"Software Developer"}
-            imageUrl={"/images/career1.avif"}
-            location={'Pakistan'}
-            tags={["Computer Science", "Programming"]}
-            salary={"$200k"}
+          {careers.map((career) => (
+            <>
+            <CareerCard
+              key={career.id}
+              id={career.id}
+              name={career.title}
+              description={career.description}
+              imageUrl={career?.imageUrls[0]}
+              tags={career.requiredSkills}
             />
-                    
-                </div>
+            </>
+          ))}
+        </div>
 
         <PagerComponent
-          totalRecordsCount={10}
-          pageSize={8}
-          currentPage={1}
+          totalRecordsCount={loaderData.total}
+          pageSize={4}
+          currentPage={currentPage}
           click={(args) => handlePageChange(args.currentPage)}
           cssClass="!mb-4"
         />

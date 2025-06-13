@@ -2,7 +2,7 @@ import {Link, useLocation} from "react-router";
 import {ChipDirective, ChipListComponent, ChipsDirective} from "@syncfusion/ej2-react-buttons";
 import {cn, getFirstWord} from "../lib/utlis";
 
-const CareerCard = ({ id, name, location, imageUrl, tags, salary }: CareerCardProps) => {
+const CareerCard = ({ id, name, description,imageUrl, tags }: CareerCardProps) => {
     const path = useLocation();
 
     return (
@@ -12,18 +12,16 @@ const CareerCard = ({ id, name, location, imageUrl, tags, salary }: CareerCardPr
             <article>
                 <h2>{name}</h2>
                 <figure>
-                    <img
-                        src="/icons/location-mark.svg"
-                        alt="location" className="size-4"
-                    />
-                    <figcaption>{location}</figcaption>
+                    <figcaption>
+                        {description.slice(0,60)} . . . . .
+                    </figcaption>
                 </figure>
             </article>
 
-            <div className="mt-5 pl-[18px] pr-3.5 pb-5">
+            <div className="mt-5 pl-[18px] pr-3.5 pb-2">
                 <ChipListComponent id="career-chip">
                     <ChipsDirective>
-                        {tags?.map((tag, index) => (
+                        {tags?.slice(0,2).map((tag, index) => (
                             <ChipDirective
                                 key={index}
                                 text={getFirstWord(tag)}
@@ -35,7 +33,6 @@ const CareerCard = ({ id, name, location, imageUrl, tags, salary }: CareerCardPr
                     </ChipsDirective>
                 </ChipListComponent>
             </div>
-            <article className="careerCard-pill">{salary}</article>
         </Link>
     )
 }
