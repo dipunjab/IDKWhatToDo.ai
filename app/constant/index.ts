@@ -152,7 +152,7 @@ export const userYAxis = {
 //for career
 export const careerXAxis: AxisModel = {
     valueType: "Category",
-    title: "Month",
+    title: "Career Interests",
     majorGridLines: { width: 0 },
 };
 
@@ -160,7 +160,7 @@ export const careerYAxis: AxisModel = {
     minimum: 0,
     maximum: 300,
     interval: 50,
-    title: "Number of Career Queries",
+    title: "Career Interest Frequency",
 };
 
 // career suggestion mock data

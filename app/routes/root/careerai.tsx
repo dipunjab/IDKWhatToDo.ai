@@ -27,7 +27,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 const CareerAi = ({ loaderData }: Route.ComponentProps) => {
   const careers = loaderData?.careers as Career[]  | [];
-console.log(careers);
 
   const [searchParams] = useSearchParams();
   const initialPage = Number(searchParams.get('page') || '1')

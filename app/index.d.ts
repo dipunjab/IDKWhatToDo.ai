@@ -138,8 +138,14 @@ declare interface Career {
   localOpportunities: string;
   relatedAlternatives: string[];
   imageUrls: string[];
+  interests: string[];
 }
 
 declare interface CreateCareerResponse {
   id?: string;
+}
+declare interface UsersItineraryCount {
+  imageUrl: string;
+  name: string;
+  count: number;
 }

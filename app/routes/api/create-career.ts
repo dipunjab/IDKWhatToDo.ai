@@ -108,7 +108,8 @@ Your goal is to give the user **clarity**, not just information. Focus on what s
       localOpportunities: career.localOpportunities,
       salaryInsights: career.salaryInsights,
       relatedAlternatives: career.relatedAlternatives,
-      imageUrls: []
+      imageUrls: [],
+      interests: interests
     };
 
 
