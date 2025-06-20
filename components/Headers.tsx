@@ -9,7 +9,7 @@ interface Props {
     ctaUrl?: string;
 }
 
-const Header = ({ title, description, ctaText, ctaUrl }: Props) => {
+const Headers = ({ title, description, ctaText, ctaUrl }: Props) => {
     const location = useLocation();
 
     return (
@@ -30,4 +30,4 @@ const Header = ({ title, description, ctaText, ctaUrl }: Props) => {
         </header>
     )
 }
-export default Header
+export default Headers

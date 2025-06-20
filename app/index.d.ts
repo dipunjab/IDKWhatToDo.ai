@@ -149,3 +149,20 @@ declare interface UsersItineraryCount {
   name: string;
   count: number;
 }
+
+declare interface DestinationProps {
+  containerClass?: string;
+  bigCard?: boolean;
+  activityCount: number;
+  rating: number;
+  bgImage: string;
+  title: string;
+}
+
+declare interface UserDocument {
+  accountId: string;
+  email: string;
+  name: string;
+  imageURL?: string;
+  joinedAt: string;
+};

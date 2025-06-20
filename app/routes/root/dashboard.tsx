@@ -31,7 +31,7 @@ export const clientLoader = async () => {
     await getCareersByInterest(),
     await getAllUsers(4, 0),
   ])
-
+  
   const allCareers = careers?.allCareers?.map(({ $id, careerDetail, imageUrls }) => ({
     docId: $id,
     ...parseCareerData(careerDetail),

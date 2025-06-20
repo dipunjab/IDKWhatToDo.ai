@@ -82,10 +82,11 @@ export const logoutUser = async () => {
     }
 };
 
-export const getUser = async () => {
+export const getUser = async (): Promise<UserDocument | null> => {
     try {
+
         const user = await account.get();
-        if (!user) return redirect("/sign-in");
+        if (!user) return null
 
         const { documents } = await database.listDocuments(
             appwriteConfig.databaseId,
@@ -96,7 +97,18 @@ export const getUser = async () => {
             ]
         );
 
-        return documents.length > 0 ? documents[0] : redirect("/sign-in");
+        if (documents.length === 0) return null;
+
+        const doc = documents[0];
+        const mappedUser: UserDocument = {
+            accountId: doc.accountId,
+            email: doc.email,
+            name: doc.name,
+            imageURL: doc.imageURL,
+            joinedAt: doc.joinedAt,
+        };
+
+        return mappedUser
     } catch (error) {
         console.error("Error fetching user:", error);
         return null;
@@ -111,7 +123,7 @@ export const getAllUsers = async (limit: number, offset: number) => {
             [Query.limit(limit), Query.offset(offset)]
         )
 
-        if(total === 0) return { users: [], total };
+        if (total === 0) return { users: [], total };
 
         return { users, total };
     } catch (e) {

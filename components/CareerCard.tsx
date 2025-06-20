@@ -4,7 +4,6 @@ import {cn, getFirstWord} from "../lib/utlis";
 
 const CareerCard = ({ id, name, description,imageUrl, tags }: CareerCardProps) => {
     const path = useLocation();
-    console.log(id);
 
     return (
         <Link to={`/careers/${id}`} className="career-card">
