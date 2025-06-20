@@ -8,7 +8,6 @@ import Header from 'components/Headers';
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const { careerId } = params;
   if (!careerId) throw new Error('Career ID is required');
-  console.log("📌 careerId param:", careerId);
 
   const [career, careers] = await Promise.all([
     getCareerById(careerId),
