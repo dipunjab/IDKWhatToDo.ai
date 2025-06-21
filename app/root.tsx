@@ -30,14 +30,44 @@ import { registerLicense } from "@syncfusion/ej2-base";
 
 registerLicense(import.meta.env.VITE_SYNCFUSION_LICENSE_KEY)
 
+
+
 export function Layout({ children }: { children: React.ReactNode }) {
+  const gaId = import.meta.env.VITE_GA_MEASUREMENT_ID;
+
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="google-site-verification" content="nepzsI__2iUGo7W3TPrvjU5XmL21zKNjwU7xBjEr9yQ" />
+        <meta name="description" content="CareerAI helps you plan your future using AI." />
+        <meta name="keywords" content="career, ai, jobs, future, guidance" />
+        <meta name="author" content="CareerAI Team" />
+        <meta property="og:title" content="CareerAI - Plan Your Future with AI" />
+        <meta property="og:description" content="Explore the best career paths tailored to you." />
+        <meta property="og:url" content="https://idk-what-to-do-ai.vercel.app" />
+        <meta property="og:type" content="website" />
+        <title>CareerAI - Plan Your Future</title>
         <Meta />
         <Links />
+        
+        {gaId && (
+          <>
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${gaId}');
+        `,
+              }}
+            />
+          </>
+        )}
+
       </head>
       <body>
         {children}
@@ -64,7 +94,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
         ? "The requested page could not be found."
         : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
-     Sentry.captureException(error);
+    Sentry.captureException(error);
 
     details = error.message;
     stack = error.stack;
