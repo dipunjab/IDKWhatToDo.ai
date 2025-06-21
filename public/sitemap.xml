@@ -4,7 +4,7 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
-    <loc>https://idk-what-to-do-ai.vercel.app/</loc>
+    <loc>https://idk-what-to-do-ai.vercel.app</loc>
     <lastmod>2025-06-21T03:41:26+00:00</lastmod>
     <priority>1.00</priority>
   </url>
