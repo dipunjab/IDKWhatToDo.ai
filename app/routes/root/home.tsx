@@ -50,6 +50,7 @@ const CareerHome = ({ loaderData }: Route.ComponentProps) => {
 
   }
 
+
   const careers = loaderData.careers as any[] | [];
   const [searchParams] = useSearchParams();
   const initialPage = Number(searchParams.get('page') || '1');
