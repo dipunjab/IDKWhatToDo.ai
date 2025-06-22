@@ -41,7 +41,7 @@ const CareerHome = ({ loaderData }: Route.ComponentProps) => {
 
   useEffect(() => {
     getUser().then(setUser);
-  }, [user]);
+  }, []);
 
   const handleLogout = async () => {
     await logoutUser();
